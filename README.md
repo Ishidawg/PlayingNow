@@ -23,14 +23,19 @@ This is just a _"widget"_ for [Tuna](https://obsproject.com/forum/resources/tuna
   <img src="https://i.imgur.com/OfXvghX.png" width="600" />
 </div>
 
-4. Download the `index.html` in releases page and save it in the same directory
-5. Add a **Browser** source in the obs and select the `index.html`
+4. Download the `index.html` in [Releases Page](https://github.com/Ishidawg/PlayingNow/releases) and save it in the same directory
+<div align="center">
+  <p><i>Your directory must looks like this in the screenshot</i></p>
+  <img src="https://i.imgur.com/NldANUC.png" width="500" />
+</div>
+
+6. Add a **Browser** source in the obs and select the `index.html`
 <div align="center">
   <p><i>Screenshot as an example to help you</i></p>
   <img src="https://i.imgur.com/oP9i0b9.png" width="600" />
 </div>
 
-6. Done
+7. Done
 
 After complete the steps above, you just need to hit play in your media player and Tune will do all the work. As this is a `.html` you can customize it at your liking, just open the file and edit what you desire.
 
