@@ -1,8 +1,8 @@
 # Playing Now
-> A Play Now widget to show music status on oBS.
+> A Play Now widget to show music status on OBS.
 
 ## Dependency
-This is just a _"widget"_ for [Tuna](https://obsproject.com/forum/resources/tuna.843/), I did a "music player" that shows the song data provided by Tuna. So donwload and install it _(I've tested on Linux and Windows)_.
+This is just a _"widget"_ for [Tuna](https://obsproject.com/forum/resources/tuna.843/), I did a "music player" that shows the song data provided by Tuna. So download and install it _(I've tested on Linux and Windows)_.
 
 ## Instructions
 1. Download and Install [Tuna](https://obsproject.com/forum/resources/tuna.843/)
