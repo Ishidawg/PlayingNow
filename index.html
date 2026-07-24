@@ -48,9 +48,10 @@
         box-shadow: 0px 8px 20px 0px #00000040;
         border-radius: 0 10px 10px 0;
         padding: 2em;
-        min-width: 350px;
-        max-width: 900px;
-        width: 100%;
+        /* min-width: 350px; */
+        /* max-width: 900px; */
+        /* width: 100%; */
+        width: 900px;
         height: 350px;
         overflow: hidden;
       }
@@ -141,9 +142,10 @@
     </div>
     <script>
       var data = null
-      let elapsed_time = 0.0
+      let elapsed_time = 1000.0 // Starts at 1 second to overcome the delay
       let song_duration = Infinity
       let current_title = null
+      let hidden = false
 
       async function loadSongData() {
         try {
@@ -159,11 +161,15 @@
           const result = await response.json()
           const song_data = new Map(Object.entries(result))
 
+          if (song_data && hidden) {
+            toggleWidgetVisibility(false)
+          }
+
           if (song_data.get("title") !== current_title) {
             data = song_data
             song_duration = data.get("duration")
             current_title = data.get("title")
-            elapsed_time = 0.0
+            elapsed_time = 1000.0
 
             // Prevent cover art to remain the same on OBS
             document.querySelector(".cover_art").src = "./cover.png?t=" + timestamp;
@@ -174,6 +180,7 @@
 
         } catch (e) {
           console.error(e)
+          toggleWidgetVisibility(true)
         }
       }
 
@@ -211,7 +218,7 @@
     }
 
     function updateBar(data) {
-      if (!data || song_duration === Infinity) return;
+      if (!data || song_duration === Infinity || hidden) return;
 
       const progress_bar = document.querySelector(".progress_bar")
       const local_time = document.querySelector(".song_elapsed_time")
@@ -235,7 +242,7 @@
         progress_bar.style.width = percent + "%"
       }
 
-      console.log(elapsed_time)
+      // console.log(elapsed_time)
     }
 
     setInterval(() => {
@@ -248,6 +255,16 @@
       }
 
       return time
+    }
+
+    function toggleWidgetVisibility(hide) {
+      if (hide) {
+        document.body.style.display = "none"
+      } else {
+        document.body.style.display = "inline flex"
+      }
+
+      hidden = hide
     }
 
     </script>
