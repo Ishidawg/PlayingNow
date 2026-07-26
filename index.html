@@ -1,272 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link href="css/style.css" rel="stylesheet">
-    <style>
-      *, *::before, *::after {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: "Overpass", sans-serif;
-        font-optical-sizing: auto;
-        font-style: normal;
-        color: #fafafa;
-        zoom: 1.12  ;
-      }
 
-      .widget_container {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        /* text-shadow: 2px 2px 2px black; */
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Overpass", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      color: #fafafa;
+      zoom: 1.12;
+    }
 
-      .data_container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        min-width: 0;
-      }
+    .widget_container {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      /* text-shadow: 2px 2px 2px black; */
+    }
 
-      .cover_art {
-        width: 350px;
-        height: 350px;
-        object-fit: cover;
-        border-radius: 10px 0 0 10px;
-        box-shadow: 0px 8px 20px 0px #00000040;
-      }
+    .data_container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-width: 0;
+    }
 
-      .song_data {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        justify-content: space-between;
-        background-color: #000000bd;
-        box-shadow: 0px 8px 20px 0px #00000040;
-        border-radius: 0 10px 10px 0;
-        padding: 2em;
-        /* min-width: 350px; */
-        /* max-width: 900px; */
-        /* width: 100%; */
-        width: 900px;
-        height: 350px;
-        overflow: hidden;
-      }
+    .cover_art {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px 0 0 10px;
+      box-shadow: 0px 8px 20px 0px #00000040;
+    }
 
-      .song_title, .song_artists, .song_album {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100%;
-      }
+    .song_data {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-between;
+      background-color: #000000bd;
+      box-shadow: 0px 8px 20px 0px #00000040;
+      border-radius: 0 10px 10px 0;
+      padding: 2em;
+      /* min-width: 350px; */
+      /* max-width: 900px; */
+      /* width: 100%; */
+      width: 900px;
+      height: 350px;
+      overflow: hidden;
+    }
 
-      .song_title {
-        font-size: 48px;
-        font-weight: 800;
-        margin-bottom: 10px;
-      }
+    .song_title,
+    .song_artists,
+    .song_album {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
 
-      .song_artists {
-        font-size: 32px;
-        color: #fafafae0;
-      }
+    .song_title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
 
-      .song_album {
-        font-size: 26px;
-        color: #fafafab2;
-      }
-      .controls_container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
+    .song_artists {
+      font-size: 32px;
+      color: #fafafae0;
+    }
 
-      .controls {
-        display: flex;
-        gap: 4px;
-      }
+    .song_album {
+      font-size: 26px;
+      color: #fafafab2;
+    }
 
-      .progress_bar {
-        background-color: #fafafab2;
-        height: 10px;
-        width: 100%;
-      }
-      
-      .player_controls {
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 10px;
-        margin-top: 10px;
-      }
+    .controls_container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
-      .time {
-        display: flex;
-        gap: 4px;
-      }
+    .controls {
+      display: flex;
+      gap: 4px;
+    }
 
-    </style>
-  </head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <body>
-    <div class="widget_container">
-      <img class="cover_art" src="./cover.png" />
-      <div class="song_data">
-        <div class="data_container">
-          <p class="song_title">Title</p>
-          <p class="song_artists">Artists</p>
-          <p class="song_album">Album</p>
-        </div>
-        <div class="controls_container">
-          <div class="progress_bar"></div>
-          <div class="player_controls">
-            <div class="controls">
-              <span>&#11208;</span>
-              <span>&#11200;</span>
-            </div>
-            <div class="time">
-              <p class="song_elapsed_time">00:00</p>
-              <span>&bullet;</span>
-              <p class="song_duration">00:00</p>
-            </div>
-          </div> 
+    .progress_bar {
+      background-color: #fafafab2;
+      height: 10px;
+      width: 100%;
+      transition: width 1000ms linear;
+    }
+
+    .player_controls {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .time {
+      display: flex;
+      gap: 4px;
+    }
+  </style>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet">
+
+<body>
+  <div class="widget_container">
+    <img class="cover_art" src="./cover.png" />
+    <div class="song_data">
+      <div class="data_container">
+        <p class="song_title">Title</p>
+        <p class="song_artists">Artists</p>
+        <p class="song_album">Album</p>
+      </div>
+      <div class="controls_container">
+        <div class="progress_bar"></div>
+        <div class="player_controls">
+          <div class="controls">
+            <span>&#11208;</span>
+            <span>&#11200;</span>
+          </div>
+          <div class="time">
+            <p class="song_elapsed_time">00:00</p>
+            <span>&bullet;</span>
+            <p class="song_duration">00:00</p>
           </div>
         </div>
+      </div>
     </div>
-    <script>
-      var data = null
-      let elapsed_time = 1000.0 // Starts at 1 second to overcome the delay
-      let song_duration = Infinity
-      let current_title = null
-      let hidden = false
+  </div>
+  <script>
+    var data = null;
+    let elapsed_time = 1000.0; // Starts at 1 second to overcome the delay
+    let song_duration = Infinity;
+    let current_title = null;
+    let hidden = false;
 
-      async function loadSongData() {
-        try {
-          const timestamp = new Date().getTime();
+    const dom = {
+      title: document.querySelector(".song_title"),
+      artists: document.querySelector(".song_artists"),
+      album: document.querySelector(".song_album"),
+      cover_art: document.querySelector(".cover_art"),
+      progress_bar: document.querySelector(".progress_bar"),
+      local_time: document.querySelector(".song_elapsed_time"),
+      song_time: document.querySelector(".song_duration")
+    };
 
-          const song_info = "song_info.json"
-          const response = await fetch(song_info)
+    async function loadSongData() {
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch("song_info.json");
 
-          if (!response.ok) {
-            throw new Error("Error loading file: " + response.statusText)
-          }
-
-          const result = await response.json()
-          const song_data = new Map(Object.entries(result))
-
-          if (song_data && hidden) {
-            toggleWidgetVisibility(false)
-          }
-
-          if (song_data.get("title") !== current_title) {
-            data = song_data
-            song_duration = data.get("duration")
-            current_title = data.get("title")
-            elapsed_time = 1000.0
-
-            // Prevent cover art to remain the same on OBS
-            document.querySelector(".cover_art").src = "./cover.png?t=" + timestamp;
-            updateDOM(data)
-            // console.log(data)
-          }
-
-
-        } catch (e) {
-          console.error(e)
-          toggleWidgetVisibility(true)
+        if (!response.ok) {
+          throw new Error("Error loading file: " + response.statusText);
         }
+
+        const song_data = await response.json();
+
+        if (song_data && hidden) {
+          toggleWidgetVisibility(false);
+        }
+
+        if (song_data.title !== current_title) {
+          data = song_data;
+          song_duration = data.duration;
+          current_title = data.title;
+          elapsed_time = 1000.0;
+
+          // Prevent cover art to remain the same on OBS
+          dom.cover_art.src = "./cover.png?t=" + timestamp;
+
+          // Set the song time only once
+          dom.song_time.innerHTML = formatTimeMsToSec(song_duration);
+
+          updateDOM(data);
+          // console.log(data)
+        }
+      } catch (e) {
+        console.error(e);
+        toggleWidgetVisibility(true);
       }
+    }
 
-    (async () => {
-      await loadSongData()
-      // console.log("Start data:" + data)
-      // console.log("Start duration:" + song_duration)
-    })()
-
-    setInterval(async () => {
-      await loadSongData()
-    }, 1000)
-    
     function updateDOM(data) {
-      if (!data) return
+      if (!data) return;
 
-      const title = document.querySelector(".song_title")
-      const artists = document.querySelector(".song_artists")
-      const album = document.querySelector(".song_album")
-
-      let raw_artists = data.get("artists")
-      let artist = ""
-
-      for (let i of raw_artists) {
-        if (raw_artists.length <= 1) {
-          artist += i
-        } else {
-          artist += `${i}, `
-        }
-      } 
-
-      title.innerHTML = data.get("title")
-      artists.innerHTML = artist
-      album.innerHTML = data.get("album")
+      dom.title.innerHTML = data.title;
+      dom.artists.innerHTML = data.artists.join(", ");
+      dom.album.innerHTML = data.album;
     }
 
     function updateBar(data) {
       if (!data || song_duration === Infinity || hidden) return;
 
-      const progress_bar = document.querySelector(".progress_bar")
-      const local_time = document.querySelector(".song_elapsed_time")
-      const song_time = document.querySelector(".song_duration")
-
-      const data_song_time = new Date(data.get("duration"))
-      const data_time_min = data_song_time.getMinutes()
-      const data_time_sec = data_song_time.getSeconds()
-      song_time.innerHTML = `${formatTime(data_time_min)}:${formatTime(data_time_sec)}`
-
       if (elapsed_time <= song_duration) {
-        const local_time_data = new Date(elapsed_time)
-        const local_time_min = local_time_data.getMinutes()
-        const local_time_sec = local_time_data.getSeconds()
+        dom.local_time.innerHTML = formatTimeMsToSec(elapsed_time);
+        elapsed_time += 1000.0;
 
-        local_time.innerHTML = `${formatTime(local_time_min)}:${formatTime(local_time_sec)}`
-
-        elapsed_time +=  1000.0
-
-        let percent = (elapsed_time / song_duration) * 100
-        progress_bar.style.width = percent + "%"
+        let percent = (elapsed_time / song_duration) * 100;
+        dom.progress_bar.style.width = percent + "%";
       }
 
       // console.log(elapsed_time)
     }
 
-    setInterval(() => {
-      updateBar(data)
-    }, 1000)
+    function formatTimeMsToSec(ms) {
+      const Totalseconds = Math.floor(ms / 1000);
+      const minutes = Math.floor(Totalseconds / 60);
+      const seconds = Totalseconds % 60;
 
-    function formatTime(time) {
-      if (time < 10) {
-        return `0${time}`
-      }
+      // console.log("Total seconds: ", Totalseconds)
+      // console.log("sec: ", seconds)
+      // console.log("min: ", minutes)
 
-      return time
+      const formatSeconds = seconds < 10 ? `0${seconds}` : seconds;
+      const formatMinutes = minutes < 10 ? `0${minutes}` : minutes;
+      const formatedTime = `${formatMinutes}:${formatSeconds}`;
+
+      return formatedTime;
     }
 
     function toggleWidgetVisibility(hide) {
-      if (hide) {
-        document.body.style.display = "none"
-      } else {
-        document.body.style.display = "inline flex"
-      }
+      if (hide != hidden) {
 
-      hidden = hide
+        document.body.style.display = hide ? "none" : "inline-flex";
+        hidden = hide;
+      }
     }
 
-    </script>
-  </body>
+    loadSongData();
+
+    setInterval(async () => {
+      await loadSongData();
+    }, 1000);
+
+    setInterval(() => {
+      updateBar(data);
+    }, 1000);
+
+  </script>
+</body>
+
 </html>
