@@ -32,7 +32,7 @@ This is just a _"widget"_ for [Tuna](https://obsproject.com/forum/resources/tuna
 6. Add a **Browser** source in the OBS and select the `index.html`
 <div align="center">
   <p><i>Screenshot as an example to help you</i></p>
-  <img src="https://i.imgur.com/oP9i0b9.png" width="600" />
+  <img src="https://i.imgur.com/rOzKgRE.png" width="600" />
 </div>
 
 7. Done
@@ -41,6 +41,7 @@ After complete the steps above, you just need to hit play in your media player o
 
 ## Screenshots
 <div align="center">
-  <img src="https://i.imgur.com/PLhFmES.png" />
-  <img src="https://i.imgur.com/d3HNAP0.png" />
+  <!-- <img src="https://i.imgur.com/PLhFmES.png" /> -->
+   <img src="https://i.imgur.com/rwcrSXH.png" />
+   <img src="https://i.imgur.com/d3HNAP0.png" />
 </div>
