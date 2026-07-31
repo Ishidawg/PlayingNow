@@ -150,10 +150,11 @@
   </div>
   <script>
     var data = null;
-    let elapsed_time = 1000.0; // Starts at 1 second to overcome the delay
-    let song_duration = Infinity;
-    let current_title = null;
+    let elapsedTime = 1000.0; // Starts at 1 second to overcome the delay
+    let songDuration = Infinity;
+    let currentTitle = null;
     let hidden = false;
+    let file = "song_info.json";
 
     const dom = {
       title: document.querySelector(".song_title"),
@@ -168,36 +169,45 @@
     async function loadSongData() {
       try {
         const timestamp = new Date().getTime();
-        const response = await fetch("song_info.json");
+        const response = await fetch(file);
 
         if (!response.ok) {
           throw new Error("Error loading file: " + response.statusText);
         }
 
-        const song_data = await response.json();
+        const responseContent = await response.text();
 
-        if (song_data && hidden) {
+        // tuna writes "None" when there's no song playing
+        if (responseContent.trim() == "None") {
+          toggleWidgetVisibility(true);
+          return;
+        }
+
+        const songData = JSON.parse(responseContent);
+
+        if (songData && hidden) {
           toggleWidgetVisibility(false);
         }
 
-        if (song_data.title !== current_title) {
-          data = song_data;
-          song_duration = data.duration;
-          current_title = data.title;
-          elapsed_time = 1000.0;
+        if (songData.title !== currentTitle) {
+          data = songData;
+          songDuration = data.duration;
+          currentTitle = data.title;
+          elapsedTime = 1000.0;
 
           // Prevent cover art to remain the same on OBS
           dom.cover_art.src = "./cover.png?t=" + timestamp;
 
           // Set the song time only once
-          dom.song_time.innerHTML = formatTimeMsToSec(song_duration);
+          dom.song_time.innerHTML = formatTimeMsToSec(songDuration);
 
           updateDOM(data);
-          // console.log(data)
         }
       } catch (e) {
         console.error(e);
         toggleWidgetVisibility(true);
+      } finally {
+        requestAnimationFrame(loadSongData);
       }
     }
 
@@ -210,17 +220,15 @@
     }
 
     function updateBar(data) {
-      if (!data || song_duration === Infinity || hidden) return;
+      if (!data || songDuration === Infinity || hidden) return;
 
-      if (elapsed_time <= song_duration) {
-        dom.local_time.innerHTML = formatTimeMsToSec(elapsed_time);
-        elapsed_time += 1000.0;
+      if (elapsedTime <= songDuration) {
+        dom.local_time.innerHTML = formatTimeMsToSec(elapsedTime);
+        elapsedTime += 1000.0;
 
-        let percent = (elapsed_time / song_duration) * 100;
+        let percent = (elapsedTime / songDuration) * 100;
         dom.progress_bar.style.width = percent + "%";
       }
-
-      // console.log(elapsed_time)
     }
 
     function formatTimeMsToSec(ms) {
@@ -249,14 +257,9 @@
 
     loadSongData();
 
-    setInterval(async () => {
-      await loadSongData();
-    }, 1000);
-
     setInterval(() => {
       updateBar(data);
     }, 1000);
-
   </script>
 </body>
 
